@@ -1,0 +1,6 @@
+<br />
+<h2 [hidden]="!isVisible">{{title}}</h2>
+<br />
+<button type="button" class="btn btn-warning" (click)="changeVisibility()">Show/Hide</button>
+<br />
+<app-customers-list [customers]="people"></app-customers-list> 

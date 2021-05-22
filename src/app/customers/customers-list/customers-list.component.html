@@ -1,0 +1,37 @@
+<br />
+<filter-textbox (changed)='filter($event)'></filter-textbox>
+<br />
+
+<table id="dangi" class="table table-bordered table-dark">
+    <thead>
+      <tr>
+        <th (click)="sort('name')" scope="col">Name</th>
+        <th (click)="sort('city')" scope="col">City</th>
+        <th (click)="sort('orderTotal')" scope="col">Order Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cust of filteredCustomers">
+        <td>
+            <a [routerLink]="['/orders',cust.id]">
+                {{ cust.name | capitalize }}
+            </a>
+        </td>
+        <td>{{ cust.city }}</td>
+        <td>{{ cust.orderTotal  |currency:currencyCode:'symbol' }}</td>
+    </tr>
+    <tr *ngIf="filteredCustomers && filteredCustomers.length">
+        <td colspan="2">&nbsp;</td>
+        <td>
+            {{ customersOrderTotal |currency:currencyCode:'symbol'}}
+        </td>
+    </tr>
+    <tr *ngIf="!filteredCustomers || !filteredCustomers.length">
+        <td colspan="4">No customers found</td>
+    </tr>
+    </tbody>
+  </table>
+
+
+Number of Customers: {{ filteredCustomers.length }}
+<br />
